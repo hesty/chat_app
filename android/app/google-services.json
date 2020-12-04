@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "292842681558",
+    "project_id": "chatapp-26f36",
+    "storage_bucket": "chatapp-26f36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292842681558:android:7a1f5dfae32836072e0577",
+        "android_client_info": {
+          "package_name": "com.hesty.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292842681558-7r56d1ukh0s42jlinura1686c41abjf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuTVXYTv4Z-ttZDzhp6j_BZJ8A4bDpduc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292842681558-7r56d1ukh0s42jlinura1686c41abjf2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
