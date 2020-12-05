@@ -2,6 +2,8 @@ import 'package:chat_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggle;
+  SignIn(this.toggle);
   @override
   _SignInState createState() => _SignInState();
 }
@@ -10,7 +12,9 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      appBar: AppBar(
+        title: Text("Giris Yap"),
+      ),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height-50,
@@ -34,7 +38,7 @@ class _SignInState extends State<SignIn> {
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                        child: Text("Sifremi Unuttum"),
+                        child: Text("Sifremi Unuttum",style: TextStyle(color: Colors.white,fontSize: 15),),
                       )),
                   SizedBox(
                     height: 10,
@@ -55,7 +59,7 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 10,
                   ),
                   Container(
                     alignment: Alignment.center,
@@ -70,18 +74,26 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("Hesabin yok mu? ",
                           style: TextStyle(color: Colors.white, fontSize: 20)),
-                      Text("Kayit OL",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              decoration: TextDecoration.underline))
+                      GestureDetector(
+                        onTap: (){
+                          widget.toggle();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 6) ,
+                          child: Text("Kayit OL",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  decoration: TextDecoration.underline)),
+                        ),
+                      )
                     ],
                   ),
                   SizedBox(height: 40,)
