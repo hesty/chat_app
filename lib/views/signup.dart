@@ -17,7 +17,8 @@ class _SignUpState extends State<SignUp> {
   AuthMethods authMethods = new AuthMethods();
   DatabaseMethods databaseMethods = new DatabaseMethods();
   HelperFunctions helperFunctions = new HelperFunctions();
-  
+
+
 
   final formKey = GlobalKey<FormState>();
 
@@ -31,6 +32,9 @@ class _SignUpState extends State<SignUp> {
         "name": userNameTextEditingController.text,
         "email": emailTextEditingController.text,
       };
+      HelperFunctions.saveUserMailSharedPreference(emailTextEditingController.text);
+      HelperFunctions.saveUserNameSharedPreference(userNameTextEditingController.text);
+
 
       setState(() {
         isLoading = true;
@@ -41,6 +45,7 @@ class _SignUpState extends State<SignUp> {
           .then((value) {
         // print("${value.uid}");
         databaseMethods.uploadUserInfo(userInfoMap);
+        HelperFunctions.saveUserLoggedInSharedPreference(true);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => ChatRoom()));
       });
