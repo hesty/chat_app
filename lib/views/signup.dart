@@ -103,7 +103,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                               TextFormField(
                                 validator: (value) {
-                                  return value.length > 6
+                                  return value.length >= 6
                                       ? null
                                       : "En az 6 Karekter!";
                                 },
