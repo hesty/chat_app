@@ -1,7 +1,7 @@
-import 'package:chat_app/helper/helperfunctions.dart';
+import 'package:chat_app/helper/helper_functions.dart';
 import 'package:chat_app/services/auth.dart';
 import 'package:chat_app/services/database.dart';
-import 'package:chat_app/views/chatRoomScreen.dart';
+import 'package:chat_app/views/chat_room_screen.dart';
 import 'package:chat_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
 

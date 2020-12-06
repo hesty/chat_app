@@ -1,7 +1,7 @@
-import 'package:chat_app/helper/helperfunctions.dart';
+import 'package:chat_app/helper/helper_functions.dart';
 import 'package:chat_app/services/auth.dart';
 import 'package:chat_app/services/database.dart';
-import 'package:chat_app/views/chatRoomScreen.dart';
+import 'package:chat_app/views/chat_room_screen.dart';
 import 'package:chat_app/widgets/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -24,36 +24,6 @@ class _SignInState extends State<SignIn> {
 
   bool isLoading = false;
   QuerySnapshot snapshotUserInfo;
-  signIn() {
-    if (formKey.currentState.validate()) {
-      HelperFunctions.saveUserMailSharedPreference(
-          emailTextEditingController.text);
-      // HelperFunctions.saveUserNameSharedPreference(userNameTextEditingController.text);
-
-      //TODO funct o get userDetails
-      setState(() {
-        isLoading = true;
-      });
-      databaseMethods
-          .getUserByUserEmail(emailTextEditingController.text)
-          .then((value) {
-        snapshotUserInfo = value;
-        HelperFunctions.saveUserMailSharedPreference(
-            snapshotUserInfo.docs[0].data()["users"]);
-      });
-
-      authMethods
-          .signInWithEmailAndPassword(emailTextEditingController.text,
-              passwordTextEditingController.text)
-          .then((value) {
-        if (value != null) {
-          HelperFunctions.saveUserLoggedInSharedPreference(true);
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ChatRoom()));
-        }
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -178,4 +148,40 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
+
+  signIn() {
+    if (formKey.currentState.validate()) {
+      HelperFunctions.saveUserMailSharedPreference(
+          emailTextEditingController.text);
+      // HelperFunctions.saveUserNameSharedPreference(userNameTextEditingController.text);
+
+      //TODO funct o get userDetails
+      setState(() {
+        isLoading = true;
+      });
+      databaseMethods
+          .getUserByUserEmail(emailTextEditingController.text)
+          .then((value) {
+        snapshotUserInfo = value;
+        HelperFunctions.saveUserMailSharedPreference(
+            snapshotUserInfo.docs[0].data()["users"]);
+      });
+
+      authMethods
+          .signInWithEmailAndPassword(emailTextEditingController.text,
+          passwordTextEditingController.text)
+          .then((value) {
+        if (value != null) {
+          HelperFunctions.saveUserLoggedInSharedPreference(true);
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => ChatRoom()));
+        }
+      });
+    }
+  }
+
+
+
+
+
 }

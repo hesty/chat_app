@@ -1,7 +1,8 @@
+import 'package:chat_app/helper/constants.dart';
 import 'package:chat_app/services/database.dart';
+import 'package:chat_app/views/conversation_screen.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -23,25 +24,67 @@ class _SearchSearchScreenState extends State<SearchScreen> {
     });
   }
 
-  //create Chatroom
-  createChatroomAndStartConversation(String userName) {
+  createChatroomAndStartConversation({String userName}) {
+    String chatRoomId = getChatRoomId(userName, Constants.myName);
+    List<String> users = [userName, Constants.myName];
+    Map<String, dynamic> chatRoomMap = {
+      "users": users,
+      "chatroomId": chatRoomId
+    };
 
-    List<String> users = [userName, ];
-   // databaseMethods.createChatRoom(chatRoomId, chatRoomMap)
+
+    if (userName == Constants.myName) {
+      AlertDialog alert = AlertDialog(
+        title: Text("Sakin OL"),
+        content: Text("Kendine Mesaj Gonderemezsin."),
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }else{
+      DatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => ConversationScreen(chatRoomId)));
+    }
   }
 
-  Widget searchList() {
-    return searchSnapshot != null
-        ? ListView.builder(
-            itemCount: searchSnapshot.docs.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return SearchTile(
-                userName: searchSnapshot.docs[index].data()["name"],
-                userMail: searchSnapshot.docs[index].data()["email"],
-              );
-            })
-        : Container();
+  Widget searchTile({String userName, String userMail}) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                userName,
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+              Text(userMail,
+                  style: TextStyle(fontSize: 18, color: Colors.white)),
+            ],
+          ),
+          Spacer(),
+          GestureDetector(
+            onTap: () {
+              createChatroomAndStartConversation(userName: userName);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(30)),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+              child: Text(
+                "Mesaj Gonder",
+                style: TextStyle(color: Colors.white, fontSize: 15),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -51,6 +94,20 @@ class _SearchSearchScreenState extends State<SearchScreen> {
   }
 
   var searchTextEdittingController = new TextEditingController();
+
+  Widget searchList() {
+    return searchSnapshot != null
+        ? ListView.builder(
+            itemCount: searchSnapshot.docs.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return searchTile(
+                userName: searchSnapshot.docs[index].data()["name"],
+                userMail: searchSnapshot.docs[index].data()["email"],
+              );
+            })
+        : Container();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,44 +164,10 @@ class _SearchSearchScreenState extends State<SearchScreen> {
   }
 }
 
-class SearchTile extends StatelessWidget {
-  final String userName;
-  final String userMail;
-
-  SearchTile({this.userName, this.userMail});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                userName,
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-              Text(userMail,
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
-            ],
-          ),
-          Spacer(),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(30)),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-              child: Text(
-                "Mesaj Gonder",
-                style: TextStyle(color: Colors.white, fontSize: 15),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+getChatRoomId(String a, String b) {
+  if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
+    return "$b\_$a";
+  } else {
+    return "$a\_$b";
   }
 }

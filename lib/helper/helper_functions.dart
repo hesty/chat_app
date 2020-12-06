@@ -24,17 +24,17 @@ class HelperFunctions {
   }
   //getting data from Shardprfnc
 
-  static Future<bool>getUserLoggedInSharedPreference(bool isUserLoggedIn) async {
+  static Future<bool>getUserLoggedInSharedPreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.getBool(sharedPreferenceUserLoggedInKey);
   }
 
-  static Future<String>getUserNameSharedPreference(String userName) async {
+  static Future<String>getUserNameSharedPreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.getString(sharedPreferenceUserNameKey);
   }
 
-  static Future<String>getUserMailSharedPreference(String userEmail) async {
+  static Future<String>getUserMailSharedPreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.getString(sharedPreferenceEmailKey);
   }
