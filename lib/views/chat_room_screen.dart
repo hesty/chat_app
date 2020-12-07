@@ -31,13 +31,13 @@ class _ChatRoomState extends State<ChatRoom> {
                 itemCount: snapshot.data.docs.length,
                 itemBuilder: (context, index) {
                   return ChatRoomsTile(
-                      userName: snapshot.data.docs[index]
-                          .data()["chatroomId"]
-                          .toString()
-                          .replaceAll("_", "")
-                          .replaceAll(Constants.myName, ""),
-                  chatRoomId:snapshot.data.docs[index]
-                      .data()["chatroomId"] ,);
+                    userName: snapshot.data.docs[index]
+                        .data()["chatroomId"]
+                        .toString()
+                        .replaceAll("_", "")
+                        .replaceAll(Constants.myName, ""),
+                    chatRoomId: snapshot.data.docs[index].data()["chatroomId"],
+                  );
                 });
       },
     );
@@ -46,7 +46,6 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   void initState() {
     getUserInfo();
-
     super.initState();
   }
 
@@ -102,13 +101,16 @@ class ChatRoomsTile extends StatelessWidget {
   final String userName;
   final String chatRoomId;
 
-  ChatRoomsTile({this.userName,this.chatRoomId});
+  ChatRoomsTile({this.userName, this.chatRoomId});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>ConversationScreen(chatRoomId)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ConversationScreen(chatRoomId)));
       },
       child: Container(
         color: Colors.black12,
