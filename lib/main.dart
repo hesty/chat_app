@@ -1,7 +1,6 @@
 import 'package:chat_app/helper/authenticate.dart';
 import 'package:chat_app/helper/helper_functions.dart';
 import 'package:chat_app/views/chat_room_screen.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
