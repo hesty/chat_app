@@ -46,6 +46,7 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   void initState() {
     getUserInfo();
+    chatRoomList();
     super.initState();
   }
 
@@ -76,6 +77,7 @@ class _ChatRoomState extends State<ChatRoom> {
           IconButton(
               onPressed: () {
                 authMethods.signOut();
+                Constants.myName="";
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => Authenticate()));
               },

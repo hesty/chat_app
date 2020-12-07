@@ -24,16 +24,21 @@ class _SearchSearchScreenState extends State<SearchScreen> {
     });
   }
 
-  createChatroomAndStartConversation({String userName}) {
+  createChatroomAndStartConversation(String userName) {
     String chatRoomId = getChatRoomId(userName, Constants.myName);
-    List<String> users = [userName, Constants.myName];
+    List<String> users = [userName,Constants.myName];
     Map<String, dynamic> chatRoomMap = {
       "users": users,
       "chatroomId": chatRoomId
     };
 
+      print(userName+"+"+Constants.myName);
 
-    if (userName == Constants.myName) {
+    DatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ConversationScreen(chatRoomId)));
+
+    /*if (userName == Constants.myName) {
       AlertDialog alert = AlertDialog(
         title: Text("Sakin OL"),
         content: Text("Kendine Mesaj Gonderemezsin."),
@@ -44,11 +49,8 @@ class _SearchSearchScreenState extends State<SearchScreen> {
           return alert;
         },
       );
-    }else{
-      DatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => ConversationScreen(chatRoomId)));
-    }
+    }*/
+
   }
 
   Widget searchTile({String userName, String userMail}) {
@@ -70,7 +72,7 @@ class _SearchSearchScreenState extends State<SearchScreen> {
           Spacer(),
           GestureDetector(
             onTap: () {
-              createChatroomAndStartConversation(userName: userName);
+              createChatroomAndStartConversation(userName);
             },
             child: Container(
               decoration: BoxDecoration(
