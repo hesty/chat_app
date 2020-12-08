@@ -15,6 +15,7 @@ class _SplashScreennState extends State<SplashScreenn> {
   @override
   void initState() {
     getLoggedInState();
+    print(userIsloggedIn);
     super.initState();
   }
 
@@ -30,10 +31,7 @@ class _SplashScreennState extends State<SplashScreenn> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 5,
-      navigateAfterSeconds: userIsloggedIn != null
-          ? /**/ userIsloggedIn
-              ? ChatRoom()
-              : Authenticate() /**/ : Authenticate(),
+      navigateAfterSeconds: userIsloggedIn != null ? /**/ userIsloggedIn ? Authenticate() : ChatRoom() /**/ : Authenticate(),
       title: new Text("Hesty Chat App",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Colors.white)),
       image: Image.asset("assets/images/splashicon.png"),

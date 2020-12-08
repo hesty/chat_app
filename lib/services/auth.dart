@@ -45,7 +45,7 @@ class AuthMethods {
     try{
       return await _auth.signOut();
     }catch(e){
-
+    print("Cikis ==== "+e.toString());
     }
   }
 

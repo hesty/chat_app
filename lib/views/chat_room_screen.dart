@@ -46,6 +46,7 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   void initState() {
     getUserInfo();
+    ChatRoomsTile();
     chatRoomList();
     super.initState();
   }
@@ -53,7 +54,7 @@ class _ChatRoomState extends State<ChatRoom> {
   getUserInfo() async {
     Constants.myName = await HelperFunctions.getUserNameSharedPreference();
     databaseMethods.getChatRooms(Constants.myName).then((e) {
-      chatRoomsStream = e;
+        chatRoomsStream = e;
     });
   }
 
@@ -77,7 +78,6 @@ class _ChatRoomState extends State<ChatRoom> {
           IconButton(
               onPressed: () {
                 authMethods.signOut();
-                Constants.myName="";
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => Authenticate()));
               },
@@ -108,6 +108,7 @@ class ChatRoomsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: (){},
       onTap: () {
         Navigator.push(
             context,

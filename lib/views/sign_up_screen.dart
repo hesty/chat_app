@@ -43,7 +43,7 @@ class _SignUpState extends State<SignUp> {
           .signUpWithEmailAndPassword(emailTextEditingController.text.trim(),
               passwordTextEditingController.text)
           .then((value) {
-        // print("${value.uid}");
+
         databaseMethods.uploadUserInfo(userInfoMap);
         HelperFunctions.saveUserLoggedInSharedPreference(true);
         Navigator.pushReplacement(
@@ -75,7 +75,7 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               TextFormField(
                                 validator: (value) {
-                                  return value.isEmpty || value.length < 5
+                                  return value.isEmpty || value.length <= 3
                                       ? "En az 4 Karekter"
                                       : null;
                                 },

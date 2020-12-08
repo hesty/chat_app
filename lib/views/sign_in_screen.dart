@@ -153,7 +153,6 @@ class _SignInState extends State<SignIn> {
     if (formKey.currentState.validate()) {
       HelperFunctions.saveUserMailSharedPreference(
           emailTextEditingController.text);
-      // HelperFunctions.saveUserNameSharedPreference(userNameTextEditingController.text);
 
       //TODO funct o get userDetails
       setState(() {
@@ -169,7 +168,7 @@ class _SignInState extends State<SignIn> {
 
       authMethods
           .signInWithEmailAndPassword(emailTextEditingController.text,
-          passwordTextEditingController.text)
+              passwordTextEditingController.text)
           .then((value) {
         if (value != null) {
           HelperFunctions.saveUserLoggedInSharedPreference(true);
@@ -179,9 +178,4 @@ class _SignInState extends State<SignIn> {
       });
     }
   }
-
-
-
-
-
 }

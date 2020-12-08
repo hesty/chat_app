@@ -16,7 +16,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
   var messageController = new TextEditingController();
 
   Stream chatMessagesStream;
+  firsFunc(){
 
+  }
 
   Widget chatMessageList() {
     return StreamBuilder<QuerySnapshot>(
@@ -34,8 +36,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
                 itemBuilder: (context, index) {
                   return MessageTile(
                       message: snapshot.data.docs[index].data()["message"],
-                      isSendByMe: snapshot.data.docs[index].data()["sendBy"] ==
-                          Constants.myName);
+                      isSendByMe: snapshot.data.docs[index].data()["sendBy"] == Constants.myName);
                 },
               );
       },

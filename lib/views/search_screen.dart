@@ -1,7 +1,6 @@
 import 'package:chat_app/helper/constants.dart';
 import 'package:chat_app/services/database.dart';
 import 'package:chat_app/views/conversation_screen.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -25,20 +24,21 @@ class _SearchSearchScreenState extends State<SearchScreen> {
   }
 
   createChatroomAndStartConversation(String userName) {
+
     String chatRoomId = getChatRoomId(userName, Constants.myName);
-    List<String> users = [userName,Constants.myName];
+    List<String> users = [userName, Constants.myName];
     Map<String, dynamic> chatRoomMap = {
       "users": users,
       "chatroomId": chatRoomId
     };
 
-      print(userName+"+"+Constants.myName);
-
-    DatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => ConversationScreen(chatRoomId)));
-
-    /*if (userName == Constants.myName) {
+    if (userName == Constants.myName) {
+      DatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ConversationScreen(chatRoomId)));
+    }else{
       AlertDialog alert = AlertDialog(
         title: Text("Sakin OL"),
         content: Text("Kendine Mesaj Gonderemezsin."),
@@ -49,7 +49,8 @@ class _SearchSearchScreenState extends State<SearchScreen> {
           return alert;
         },
       );
-    }*/
+    }
+
 
   }
 
