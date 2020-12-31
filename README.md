@@ -1,16 +1,16 @@
-# chat_app
+<h1 align="center">Chat App</h1>
 
-Chat App 
 
-## Getting Started
+Flutter ve Firebase Teknolojilerini Kullanarak Realtime Chat Uygulaması Geliştirdim.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+<img src="https://user-images.githubusercontent.com/61988280/101834157-06f15f80-3b4b-11eb-8242-5f2601ecd649.png"  height="600">
+<img src="https://user-images.githubusercontent.com/61988280/101834165-09ec5000-3b4b-11eb-9b85-905efba701d4.png"  height="600">
+<img src="https://user-images.githubusercontent.com/61988280/101834172-0bb61380-3b4b-11eb-9016-ebb95f5411e7.png"  height="600">
+<img src="https://user-images.githubusercontent.com/61988280/101834178-0e186d80-3b4b-11eb-89b8-b0749d91aa90.png"  height="600">
+<img src="https://user-images.githubusercontent.com/61988280/101834184-0fe23100-3b4b-11eb-800f-e132e342e673.png"  height="600">
+<img src="https://user-images.githubusercontent.com/61988280/101834188-11135e00-3b4b-11eb-8c95-b5521b895b2d.png"  height="600">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
