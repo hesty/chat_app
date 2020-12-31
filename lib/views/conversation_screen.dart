@@ -44,6 +44,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
   }
 
   sendMessage() {
+    print(Constants.myName);
     if (messageController.text.isNotEmpty) {
       Map<String, dynamic> messageMap = {
         "message": messageController.text,

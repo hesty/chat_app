@@ -32,7 +32,7 @@ class _SearchSearchScreenState extends State<SearchScreen> {
       "chatroomId": chatRoomId
     };
 
-    if (userName == Constants.myName) {
+    if (userName != Constants.myName) {
       DatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
       Navigator.push(
           context,
